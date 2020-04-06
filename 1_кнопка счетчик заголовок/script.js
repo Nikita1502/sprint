@@ -1,7 +1,7 @@
 let num = 0;
 
-
-function count(){
+counter.onclick = function() {
     num++;
-    document.querySelector('h1').innerHTML = num;
+    document.querySelector("h1").innerHTML = num;
 }
+
