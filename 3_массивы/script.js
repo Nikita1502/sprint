@@ -32,8 +32,12 @@ var negative = scores.map(function(number) {
   });
 console.log(negative);
 
+// Копия массива для сортировки
+var sorted = scores.map(function(number) {
+    return number;
+  });
+
 // Сортированный по убыванию массив, хз как это работает
- var sorted = scores;
  function compareNumeric(a, b) {
     if (a > b) return -1;
     if (a == b) return 0;
@@ -41,24 +45,3 @@ console.log(negative);
   };
   sorted.sort(compareNumeric);
   console.log(sorted);
-
-
-// var nums = scores.map(function(s) {
-//     return s * 1.5;
-//   });
-// console.log(nums);
-
-//   var over50 = scores.filter(function(number) {
-//     return number > 50;
-//   });
-// console.log(over50);
-
-//  var isOver10 = scores.every(function(number){
-//      return number > 10;
-//  });
-//  console.log(isOver10);
-
-//  var isOver50 = scores.some(function(number){
-//     return number > 500;
-// });
-// console.log(isOver50);
