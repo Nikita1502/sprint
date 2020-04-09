@@ -16,6 +16,12 @@
     border-radius: 5px;
     margin: 5px;
 }
+.outerdiv {
+    display: flex;
+    justify-content: space-around;
+}
 .deleteBtn {
-
+    all: none;
+    border-radius: 3px;
+    background-color: white;
 }

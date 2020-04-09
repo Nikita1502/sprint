@@ -18,21 +18,27 @@ function enter(){
         arrNames.push(names);
         document.getElementById('names').innerHTML = '';
         if (arrNames.length > 3) {
-            arrNames.forEach(function(item, i) {
-                var outerdiv = document.createElement('div');
-                var deletebtn = document.createElement('button');
-                document.getElementById('names').append(outerdiv);                
-                outerdiv.classList.add('outerdiv');
-                document.getElementsByClassName('outerdiv')[i].append(deletebtn); //добавляем кнопку в outerdiv
-                deletebtn.classList.add('deleteBtn'); // кнопкам для удаления присваиваем класс
-                document.getElementsByClassName('deleteBtn')[i].append('x'); //крестики на кнопках
-                var namediv = document.createElement('div'), // объявлем дивы для имен
-                    lastnamediv = document.createElement('div'); // объявлем дивы для фамилий
-                namediv.innerHTML = item.name;
-                lastnamediv.innerHTML = item.lastname;
-                document.getElementsByClassName('outerdiv')[i].append(namediv);
-                document.getElementsByClassName('outerdiv')[i].append(lastnamediv);
-            })
+            // arrNames.forEach(function(item, i) {
+            //     var outerdiv = document.createElement('div');
+            //     var deletebtn = document.createElement('button');
+            //     document.getElementById('names').append(outerdiv); 
+            //     outerdiv.classList.add('outerdiv');
+            //     outerdiv.append(deletebtn); //добавляем кнопку в outerdiv
+            //     deletebtn.classList.add('deleteBtn'); // кнопкам для удаления присваиваем класс
+            //     deletebtn.append('x'); //крестики на кнопках
+            //     var namediv = document.createElement('div'), // объявлем дивы для имен
+            //         lastnamediv = document.createElement('div'); // объявлем дивы для фамилий
+            //     namediv.innerHTML = item.name;
+            //     lastnamediv.innerHTML = item.lastname;
+
+            //     deletebtn.onclick = function(){
+            //         deleteCard(i);
+            //     }
+
+            //     outerdiv.append(namediv);
+            //     outerdiv.append(lastnamediv);
+            // })
+            render();
         }
         // console.log(arrNames);
         
@@ -47,20 +53,26 @@ function enter(){
 }
 function render(){
     document.getElementById('names').innerHTML = ' ';
-    arrNames.forEach(function(item, i){
+    arrNames.forEach(function(item, i) {
         var outerdiv = document.createElement('div');
         var deletebtn = document.createElement('button');
-        document.getElementById('names').append(outerdiv);                
+        document.getElementById('names').append(outerdiv); 
         outerdiv.classList.add('outerdiv');
-        document.getElementsByClassName('outerdiv')[i].append(deletebtn); //добавляем кнопку в outerdiv
-        deletebtn.classList.add('deleteBtn'); // кнопкам для удаления присваиваем класс
-        document.getElementsByClassName('deleteBtn')[i].append('x'); //крестики на кнопках
+        
         var namediv = document.createElement('div'), // объявлем дивы для имен
             lastnamediv = document.createElement('div'); // объявлем дивы для фамилий
         namediv.innerHTML = item.name;
         lastnamediv.innerHTML = item.lastname;
-        document.getElementsByClassName('outerdiv')[i].append(namediv);
-        document.getElementsByClassName('outerdiv')[i].append(lastnamediv);
+
+        deletebtn.onclick = function(){
+            deleteCard(i);
+        }        
+        outerdiv.append(namediv);
+        outerdiv.append(lastnamediv);
+
+        outerdiv.append(deletebtn); //добавляем кнопку в outerdiv
+        deletebtn.classList.add('deleteBtn'); // кнопкам для удаления присваиваем класс
+        deletebtn.append('x'); //крестики на кнопках
     })
 }
 
@@ -71,7 +83,6 @@ function deleteCard(num){
     render();
 }
 
-document.getElementById('del').onclick = deleteCard(0); //вызваем функцию для удаления карточку
 document.getElementById("enterBtn").onclick = enter;
 
 
