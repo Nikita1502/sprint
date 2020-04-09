@@ -18,10 +18,20 @@ function enter(){
         arrNames.push(names);
         document.getElementById('names').innerHTML = '';
         if (arrNames.length > 3) {
-            arrNames.forEach(function(item){
-                var div = document.createElement('div');
-                div.innerHTML = item.name + ' ' + item.lastname;
-                document.getElementById('names').append(div);
+            arrNames.forEach(function(item, i) {
+                var outerdiv = document.createElement('div');
+                var deletebtn = document.createElement('button');
+                document.getElementById('names').append(outerdiv);                
+                outerdiv.classList.add('outerdiv');
+                document.getElementsByClassName('outerdiv')[i].append(deletebtn); //добавляем кнопку в outerdiv
+                deletebtn.classList.add('deleteBtn'); // кнопкам для удаления присваиваем класс
+                document.getElementsByClassName('deleteBtn')[i].append('x'); //крестики на кнопках
+                var namediv = document.createElement('div'), // объявлем дивы для имен
+                    lastnamediv = document.createElement('div'); // объявлем дивы для фамилий
+                namediv.innerHTML = item.name;
+                lastnamediv.innerHTML = item.lastname;
+                document.getElementsByClassName('outerdiv')[i].append(namediv);
+                document.getElementsByClassName('outerdiv')[i].append(lastnamediv);
             })
         }
         // console.log(arrNames);
@@ -35,7 +45,35 @@ function enter(){
         alert('Имя и фамилия должны содержать хотя бы по две буквы');
     }
 }
+function render(){
+    document.getElementById('names').innerHTML = ' ';
+    arrNames.forEach(function(item, i){
+        var outerdiv = document.createElement('div');
+        var deletebtn = document.createElement('button');
+        document.getElementById('names').append(outerdiv);                
+        outerdiv.classList.add('outerdiv');
+        document.getElementsByClassName('outerdiv')[i].append(deletebtn); //добавляем кнопку в outerdiv
+        deletebtn.classList.add('deleteBtn'); // кнопкам для удаления присваиваем класс
+        document.getElementsByClassName('deleteBtn')[i].append('x'); //крестики на кнопках
+        var namediv = document.createElement('div'), // объявлем дивы для имен
+            lastnamediv = document.createElement('div'); // объявлем дивы для фамилий
+        namediv.innerHTML = item.name;
+        lastnamediv.innerHTML = item.lastname;
+        document.getElementsByClassName('outerdiv')[i].append(namediv);
+        document.getElementsByClassName('outerdiv')[i].append(lastnamediv);
+    })
+}
+
+function deleteCard(num){ 
+    arrNames = arrNames.filter(function(item, i){
+        return i!=num;
+    })
+    render();
+}
+
+document.getElementById('del').onclick = deleteCard(0); //вызваем функцию для удаления карточку
 document.getElementById("enterBtn").onclick = enter;
+
 
 
 // var outerdiv = document.createElement('div');
