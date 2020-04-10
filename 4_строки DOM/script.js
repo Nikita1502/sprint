@@ -11,9 +11,11 @@ function enter(){
             alert('О, Дюшик? Здарова!');
         }    
 
-        var names = {};
-        names.name = name;
-        names.lastname = lastName;
+        var names = {
+            name : name,
+            lastName : lastName
+        };
+
     
         arrNames.push(names);
         document.getElementById('names').innerHTML = '';
@@ -66,12 +68,14 @@ function render(){
 
         deletebtn.onclick = function(){
             deleteCard(i);
-        }        
+        }     
+
         outerdiv.append(namediv);
         outerdiv.append(lastnamediv);
 
         outerdiv.append(deletebtn); //добавляем кнопку в outerdiv
-        deletebtn.classList.add('deleteBtn'); // кнопкам для удаления присваиваем класс
+        // deletebtn.classList.add('deleteBtn'); // кнопкам для удаления присваиваем класс
+        deletebtn.setAttribute('class', 'deleteBtn'); // кнопкам для удаления присваиваем класс
         deletebtn.append('x'); //крестики на кнопках
     })
 }
@@ -84,7 +88,7 @@ function deleteCard(num){
 }
 
 document.getElementById("enterBtn").onclick = enter;
-
+document.addEventListener('Enter', enter); 
 
 
 // var outerdiv = document.createElement('div');
