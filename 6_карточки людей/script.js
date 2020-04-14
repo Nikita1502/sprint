@@ -1,4 +1,6 @@
 var arr;
+var filtredArr;
+
 fetch('https://randomuser.me/api/?results=100&').then(res => res.json()).then(function(res){ 
 
     arr = res.results.map(function(item){    
@@ -57,21 +59,27 @@ fetch('https://randomuser.me/api/?results=100&').then(res => res.json()).then(fu
     var refresh = function(){
         var pc = document.getElementById('names');
         pc.innerHTML = '';
-        arr.forEach(addPersonsCard);
+        filtredArr.forEach(addPersonsCard);
     }
 
     arr.forEach(addPersonsCard); 
 
+    filtredArr = arr;
 
     var searcher = document.getElementById('searchName');
     searcher.oninput = function() {
-        arr = arr.filter(function(item){
+        filtredArr = filtredArr.filter(function(item){
             var isName = item.name.includes(searcher.value);
             var isLastName = item.lastName.includes(searcher.value);
             return (isName == true) || (isLastName == true);
         });                
         refresh();
     }
-    // var genderChoice = document.getElementById('genderChoice');
-    // console.log(genderChoice.selected.options);
+    var genderChoice = document.getElementById('genderChoice');
+    genderChoice.onchange = function() {
+        filtredArr = arr.filter(function(item){
+            return (item.gender == genderChoice.value) || (genderChoice.value == 'unchosen');
+        })
+        refresh();
+    }
 })
