@@ -1,8 +1,24 @@
-fetch('https://randomuser.me/api/?results=100&').then(res => res.json()).then(function(res){    
+var arr;
+fetch('https://randomuser.me/api/?results=100&').then(res => res.json()).then(function(res){ 
+
+    arr = res.results.map(function(item){    
+        return {
+            picture: item.picture.medium,
+            name: item.name.first,
+            lastName: item.name.last,
+            age: item.dob.age,
+            gender: item.gender,
+        }
+    });
+
+    arr = arr.filter(function(item, i){
+        return ((item.age < 50) || (item.age > 100));
+    });
 
     var addPersonsCard = function(person, personIndex) {
+        
         var personsList       = document.getElementById('names'); 
-        var pictureDiv        = document.createElement('div');  
+        var picture           = document.createElement('img');  
         var personCard        = document.createElement('div');
         var personNameDiv     = document.createElement('div');
         var personLastNameDiv = document.createElement('div');  
@@ -11,34 +27,51 @@ fetch('https://randomuser.me/api/?results=100&').then(res => res.json()).then(fu
         var deleteButton      = document.createElement('button');
         
         personsList.append(personCard);
-        personCard.append(pictureDiv); 
+        personCard.append(picture); 
         personCard.append(personNameDiv); 
         personCard.append(personLastNameDiv);
         personCard.append(genderDiv);
+        personCard.append(ageDiv);
         personCard.append(deleteButton);
 
         personCard.classList.add('personCard');        
-        pictureDiv.classList.add('pictureDiv');
+        picture.classList.add('picture');
         personNameDiv.classList.add('personNameDiv');
         personLastNameDiv.classList.add('personLastNameDiv');
         ageDiv.classList.add('ageDiv');
         genderDiv.classList.add('genderDiv');
         deleteButton.classList.add('deleteButton');
 
-        pictureDiv.innerHTML = '<img src="' + person.picture.medium + '" /  >'; 
-        personNameDiv.innerHTML = person.name.first;    
-        personLastNameDiv.innerHTML = person.name.last;
-        ageDiv.innerHTML = person.dob.age + ' лет';
+        picture.setAttribute('src', person.picture);
+        personNameDiv.innerHTML = person.name;    
+        personLastNameDiv.innerHTML = person.lastName;
+        ageDiv.innerHTML = person.age + ' лет';
         genderDiv.innerHTML = person.gender;        
         deleteButton.innerHTML = "X";
 
-        deleteButton.onclick   = function(){
-                person = person.filter(function(item, index){
-                return index !== personIndex;
-            })
-            // refreshList();
-            console.log('edwe');
-        } 
-    };    
-    res.results.forEach(addPersonsCard); 
+        deleteButton.onclick = function(){
+            personCard.remove();
+        }
+    };  
+
+    var refresh = function(){
+        var pc = document.getElementById('names');
+        pc.innerHTML = '';
+        arr.forEach(addPersonsCard);
+    }
+
+    arr.forEach(addPersonsCard); 
+
+
+    var searcher = document.getElementById('searchName');
+    searcher.oninput = function() {
+        arr = arr.filter(function(item){
+            var isName = item.name.includes(searcher.value);
+            var isLastName = item.lastName.includes(searcher.value);
+            return (isName == true) || (isLastName == true);
+        });                
+        refresh();
+    }
+    // var genderChoice = document.getElementById('genderChoice');
+    // console.log(genderChoice.selected.options);
 })

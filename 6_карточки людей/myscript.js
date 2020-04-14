@@ -13,7 +13,6 @@
             lastName: lastName
         });
     }
-
     var addPersonsCard = function(person, personIndex){
         var personCard         = document.createElement('div');
         var personNameDiv      = document.createElement('div');
@@ -26,7 +25,6 @@
             })
             refreshList();
         }
-
         personNameDiv.innerHTML = person.name
         personLastNameDiv.innerHTML = person.lastName
 
@@ -36,12 +34,10 @@
 
         personsList.append(personCard);
     }
-
     var refreshList = function(){
         personsList.innerHTML = '';
         arrNames.forEach(addPersonsCard)
     }
-
     var ifNamesOk = function(callback){
         var name = nameField.value.trim();
         var lastName = lastNameField.value.trim();
@@ -52,14 +48,11 @@
             alert('Имя и фамилия должны содержать хотя бы по две буквы');
         }
     }
-
     var addPerson = function(){
         ifNamesOk(function(){
             addPersonToList();
             refreshList();
         })
     }
-
     document.getElementById("enterBtn").onclick = addPerson;
-
 })()

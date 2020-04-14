@@ -29,14 +29,13 @@
     bottom: 30px;
 }
 
-.pictureDiv {
+.picture {
+    border-radius: 5px;
     position: relative;
     left: 10px;
     top: 10px;
 }
-img {
-    border-radius: 5px;
-}
+
 .personNameDiv {
     position: relative;
     left: 15px;
