@@ -67,19 +67,22 @@ fetch('https://randomuser.me/api/?results=100&').then(res => res.json()).then(fu
     filtredArr = arr;
 
     var searcher = document.getElementById('searchName');
-    searcher.oninput = function() {
-        filtredArr = filtredArr.filter(function(item){
-            var isName = item.name.includes(searcher.value);
-            var isLastName = item.lastName.includes(searcher.value);
-            return (isName == true) || (isLastName == true);
-        });                
-        refresh();
-    }
     var genderChoice = document.getElementById('genderChoice');
-    genderChoice.onchange = function() {
+
+    var filter = function(){
         filtredArr = arr.filter(function(item){
-            return (item.gender == genderChoice.value) || (genderChoice.value == 'unchosen');
-        })
-        refresh();
+            var isGenderOk = (item.gender == genderChoice.value) || (genderChoice.value == 'unchosen');
+            var isName = item.name.toUpperCase().includes(searcher.value.toUpperCase());
+            var isLastname = item.lastName.toUpperCase().includes(searcher.value.toUpperCase());
+            var isNameOk = (isName == true) || (isLastname == true);
+
+            return isNameOk && isGenderOk;
+        });
+
+    refresh();
+
     }
+    
+    searcher.oninput = filter;
+    genderChoice.onchange = filter;
 })
