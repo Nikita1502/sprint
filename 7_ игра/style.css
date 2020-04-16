@@ -1,0 +1,30 @@
+#space {
+    width: 700px; 
+    height: 500px;
+    border: 1px solid black;
+    margin: auto auto;
+    margin: 7% 25%;
+    position: absolute;
+}
+.figure {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    transition: width 3s;
+    }
+.circle {
+    background-color: red;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    /* position: absolute; */
+    /* position: relative; */
+}
+.square {
+    background-color: blue;
+    height: 50px;
+    width: 50px;
+    /* border-radius: 50%; */
+    /* position: absolute; */
+}
