@@ -2,7 +2,7 @@
     width: 700px; 
     height: 500px;
     border: 1px solid black;
-    margin: auto auto;
+    /* margin: auto auto; */
     margin: 7% 25%;
     position: absolute;
 }
@@ -11,20 +11,64 @@
     height: 50px;
     width: 50px;
     position: absolute;
-    transition: width 3s;
+    transition: left 3s, top 3s;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    font-family: sans-serif;
     }
 .circle {
     background-color: red;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    /* position: absolute; */
-    /* position: relative; */
 }
 .square {
     background-color: blue;
-    height: 50px;
-    width: 50px;
+
     /* border-radius: 50%; */
     /* position: absolute; */
+}
+
+#endGame {
+    color: red;
+    font-size: 50px;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#viewscore {
+    font-family: sans-serif;
+    font-size: 15px;
+    z-index: 10;
+}
+#maskiraciaTop {
+    background-color: white;
+    height: 50px;
+    width: 900px;    
+    position: relative;
+    top: 56px;
+    left: 300px;
+}
+#maskiraciaBottom {
+    background-color: white;
+    height: 50px;
+    width: 900px; 
+    position: relative;
+    top: 58px;
+    left: 300px;
+}
+#maskiraciaLeft {
+    background-color: white;
+    height: 500px;
+    width: 50px; 
+    position: relative;
+    top: 57px;
+    left: 330px;
+}
+#maskiraciaRight {
+    background-color: white;
+    height: 500px;
+    width: 50px;  
+    position: relative;
+    top: -493px;
+    left: 1082px;  
 }
