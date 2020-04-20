@@ -10,22 +10,29 @@ var analysis = function(text){
             wordStat[item] = 1;
         // wordStat[item] = wordStat[item] + 1 || 1;
     })
-    for (var key in wordStat){
-        console.log(key + ': ' + wordStat[key]);
-    }
-    console.log('В тексте ' + textArr.length + ' слов.');
+
+    // Object.keys(wordStat).forEach(function(item){
+    //     console.log(item + ': ' + wordStat[item]);
+    // })
+
+    // console.log('В тексте ' + textArr.length + ' слов.');
 
     var sort = [];
-    for (var word in wordStat){
-        sort.push([word, wordStat[word]]);
-    }
+ 
+    Object.keys(wordStat).forEach(function(item){
+        sort.push([item, wordStat[item]]);
+    })
+
     sort.sort(function(a, b) {
         return b[1] - a[1];
     });
 
+    wordStat.top3 = [];
+    
     for (var i = 0; i < 3; i++) {
-        console.log('Место №' + (i+1) + ': '+ sort[i][0] + ' - ' + sort[i][1] + ' раз(а)')
-    }    
+        wordStat.top3.push(sort[i][0]);
+    }
+    return wordStat;
 }
 console.log(analysis(text));
 
