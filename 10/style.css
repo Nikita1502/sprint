@@ -1,0 +1,17 @@
+span {
+    color: white;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+}
+header {
+    background-color: rgb(15, 8, 32);
+    height: 40px;
+}
+main {
+    height: 400px;
+}
+.note {
+    height: 80px;
+    width: 100px;
+    border: solid black 1px;
+}
