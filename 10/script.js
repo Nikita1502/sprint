@@ -20,9 +20,17 @@ Note.prototype.remove = function(){
 
 function addNote(){
     var titleInput = document.getElementById('title');
-    var dateInput = document.getElementById('date');
+    // var dateInput = document.getElementById('date');
     var descriptionInput = document.getElementById('description');
-    var newNote = new Note(titleInput.value, dateInput.value, descriptionInput.value);
+
+    var date = new Date();
+    var dd = date.getDate();
+    if (dd < 10) dd = '0' + dd; 
+    var mm = date.getMonth() + 1;
+    if (mm < 10) mm = '0' + mm; 
+    currentDate = dd + '.' + mm + '.' + date.getFullYear();
+
+    var newNote = new Note(titleInput.value, currentDate, descriptionInput.value);
     notes.push(newNote);
 
     var main             = document.querySelector('main');
